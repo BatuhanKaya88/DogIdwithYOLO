@@ -6,7 +6,7 @@ if __name__ == "__main__":
 
     # Eğitimi başlat
     model.train(
-        data='C:/Users/Sibel Kaya/Desktop/DogIdwithYOLO/.venv/dataset/data.yaml',  # Data dosyasının doğru yolu
+        data='C:/Users/YOURDESKTOP/Desktop/DogIdwithYOLO/.venv/dataset/data.yaml',  # Data dosyasının doğru yolu
         epochs=50,
         imgsz=640,
         batch=8,
