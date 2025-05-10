@@ -187,3 +187,5 @@ If you encounter any issues or have any suggestions for improvements, feel free 
 
 This structure ensures the project is clear, easy to follow, and professional. If you need any further adjustments or additions, feel free to ask! 😊
 ```
+Some photos
+(https://github.com/user-attachments/assets/3bcba5f3-6e2b-465f-a4ad-bdd630711773)
