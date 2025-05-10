@@ -1,31 +1,31 @@
 import tensorflow as tf
 from tensorflow.keras.preprocessing.image import ImageDataGenerator
 
-# EfficientNetB0 modelini yükle
+# Load the EfficientNetB0 model
 base_model = tf.keras.applications.EfficientNetB0(
     input_shape=(128, 128, 3),
     include_top=False,
     weights='imagenet'
 )
-base_model.trainable = True  # Fine-tuning açık
+base_model.trainable = True  # Fine-tuning enabled
 
-# Modeli oluştur
+# Build the model
 model = tf.keras.Sequential([
     base_model,
     tf.keras.layers.GlobalAveragePooling2D(),
     tf.keras.layers.Dense(64, activation='relu'),
     tf.keras.layers.Dropout(0.3),
-    tf.keras.layers.Dense(2, activation='softmax')  # 2 sınıf: dog ve not_dog
+    tf.keras.layers.Dense(2, activation='softmax')  # 2 classes: dog and not_dog
 ])
 
-# Modeli derle
+# Compile the model
 model.compile(
     optimizer='adam',
     loss='categorical_crossentropy',
     metrics=['accuracy']
 )
 
-# Data augmentasyon (veri artırma)
+# Data augmentation
 train_datagen = ImageDataGenerator(
     rescale=1./255,
     rotation_range=40,
@@ -39,11 +39,11 @@ train_datagen = ImageDataGenerator(
 
 validation_datagen = ImageDataGenerator(rescale=1./255)
 
-# Dizinler
-train_dir = 'C:/Users/Sibel Kaya/Desktop/DogIdwithYOLO/.venv/dataset/images/train'
-validation_dir = 'C:/Users/Sibel Kaya/Desktop/DogIdwithYOLO/.venv/dataset/images/valid'
+# Directories
+train_dir = 'C:/Users/YOURDESKTOP/Desktop/DogIdwithYOLO/.venv/dataset/images/train'
+validation_dir = 'C:/Users/YOURDESKTOP/Desktop/DogIdwithYOLO/.venv/dataset/images/valid'
 
-# Verileri yükle
+# Load the data
 train_generator = train_datagen.flow_from_directory(
     train_dir,
     target_size=(128, 128),
@@ -58,7 +58,7 @@ validation_generator = validation_datagen.flow_from_directory(
     class_mode='categorical'
 )
 
-# Modeli eğit
+# Train the model
 history = model.fit(
     train_generator,
     steps_per_epoch=len(train_generator),
@@ -67,7 +67,7 @@ history = model.fit(
     validation_steps=len(validation_generator)
 )
 
-# Modeli kaydet
+# Save the model
 model.save('dog_human_classifier_model.h5')
 
-print("Model başarıyla eğitildi ve kaydedildi! 🎯")
+print("Model successfully trained and saved! 🎯")
