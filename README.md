@@ -180,7 +180,7 @@ You can modify the model used in this project by changing the model-related code
 
 # Change the model in the code.
 
-model = EfficientNetB0(weights="imagenet")
+model = YOLO('yolov8n.pt')
 
 ```
 
